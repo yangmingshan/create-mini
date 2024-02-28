@@ -7,7 +7,8 @@
     "create-mini": "index.js"
   },
   "files": [
-    "index.js"
+    "index.js",
+    "template"
   ],
   "scripts": {
     "format": "prettier --check \"**/*.{js,cjs,ts,json,md}\"",
