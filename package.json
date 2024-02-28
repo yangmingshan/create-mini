@@ -1,0 +1,32 @@
+{
+  "name": "create-mini",
+  "version": "1.0.0",
+  "description": "自以为是的 Vue Mini 脚手架",
+  "type": "module",
+  "bin": {
+    "create-mini": "index.js"
+  },
+  "files": [
+    "index.js"
+  ],
+  "scripts": {
+    "format": "prettier --check \"**/*.{js,cjs,ts,json,md}\"",
+    "lint": "eslint --ext .js,.cjs,.ts .",
+    "type": "tsc --noEmit",
+    "build": "tsc"
+  },
+  "repository": "https://github.com/yangmingshan/create-mini.git",
+  "author": "Yang Mingshan <y.mingshan3@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "kolorist": "^1.8.0",
+    "prompts": "^2.4.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.20",
+    "@types/prompts": "^2.4.9",
+    "prettier": "^3.2.5",
+    "typescript": "^5.3.3",
+    "xo": "^0.57.0"
+  }
+}
