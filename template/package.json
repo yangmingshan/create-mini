@@ -2,6 +2,7 @@
   "name": "vue-mini-project",
   "version": "1.0.0",
   "private": true,
+  "packageManager": "pnpm@8.15.4",
   "scripts": {
     "lint:script": "eslint --ext .js,.ts .",
     "lint:style": "stylelint \"src/**/*.less\"",
