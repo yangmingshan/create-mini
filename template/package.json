@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.23.9",
-    "@vue-mini/wechat": "1.0.0-rc.2",
+    "@vue-mini/wechat": "1.0.0-rc.3",
     "promise-polyfill": "^8.3.0",
     "regenerator-runtime": "^0.14.1"
   },
