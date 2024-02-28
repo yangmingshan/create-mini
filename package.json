@@ -1,6 +1,6 @@
 {
   "name": "create-mini",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "自以为是的 Vue Mini 脚手架",
   "type": "module",
   "bin": {
