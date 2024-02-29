@@ -37,6 +37,10 @@ pnpm create mini@latest
 
 - `src/styles` 目录仅用于存放抽象样式文件，如变量、Mixin 等，此目录不会被打入生产包。构建脚本会在 `src/styles` 目录外的每个 Less 文件头部自动导入 `src/styles/variables.less` 及 `src/styles/mixins.less` 这两个文件，所以你可以直接使用其中的变量或 Mixins 而无需额外步骤。
 
+## 致谢
+
+此项目由 [create-vue](https://github.com/vuejs/create-vue) 修改而来。
+
 ## 许可证
 
 [MIT](https://opensource.org/licenses/MIT)
