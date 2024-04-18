@@ -1,8 +1,5 @@
-/* eslint-disable unicorn/prefer-module */
-'use strict';
-
-module.exports = {
-  customSyntax: require('postcss-less'),
+const config = {
+  customSyntax: 'postcss-less',
   extends: 'stylelint-config-standard',
   rules: {
     'alpha-value-notation': 'number',
@@ -15,3 +12,5 @@ module.exports = {
     ],
   },
 };
+
+export default config;

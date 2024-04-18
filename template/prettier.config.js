@@ -1,6 +1,5 @@
-/* eslint-disable unicorn/prefer-module */
-'use strict';
-
-module.exports = {
+const config = {
   singleQuote: true,
 };
+
+export default config;

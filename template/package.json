@@ -2,14 +2,15 @@
   "name": "vue-mini-project",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
   "packageManager": "pnpm@9.0.2",
   "scripts": {
     "lint:script": "eslint --ext .js,.ts .",
     "lint:style": "stylelint \"src/**/*.less\"",
     "type": "tsc",
     "test": "vitest",
-    "dev": "cross-env NODE_ENV=development node build.js",
-    "build": "cross-env NODE_ENV=production node build.js",
+    "dev": "cross-env NODE_ENV=development node build.cjs",
+    "build": "cross-env NODE_ENV=production node build.cjs",
     "prepare": "husky"
   },
   "dependencies": {

@@ -1,4 +1,3 @@
-/* eslint-disable unicorn/prefer-module */
 'use strict';
 
 const os = require('node:os');

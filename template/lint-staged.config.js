@@ -1,7 +1,4 @@
-/* eslint-disable unicorn/prefer-module */
-'use strict';
-
-module.exports = {
+const config = {
   '**/*.js': (filenames) => [
     `prettier --write ${filenames.join(' ')}`,
     `eslint ${filenames.join(' ')}`,
@@ -21,3 +18,5 @@ module.exports = {
   '**/*.json': (filenames) => [`prettier --write ${filenames.join(' ')}`],
   '**/*.md': (filenames) => [`prettier --write ${filenames.join(' ')}`],
 };
+
+export default config;
