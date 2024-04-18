@@ -164,7 +164,9 @@ async function processTemplate(filePath, origin = localPath) {
       });
     })
     .process(source, { xmlMode: true, singleTags: [/<>/] });
-  const destination = filePath.replace('src', 'dist');
+  const destination = filePath
+    .replace('src', 'dist')
+    .replace(/\.html$/, '.wxml');
   // Make sure the directory already exists when write file
   await fs.copy(filePath, destination);
   fs.writeFile(destination, html);
@@ -222,7 +224,7 @@ async function dev() {
       return;
     }
 
-    if (/\.wxml$/.test(filePath)) {
+    if (/\.html$/.test(filePath)) {
       processTemplate(filePath);
       return;
     }
@@ -265,7 +267,7 @@ async function prod() {
       return;
     }
 
-    if (/\.wxml$/.test(filePath)) {
+    if (/\.html$/.test(filePath)) {
       processTemplate(filePath, publicPath);
       return;
     }

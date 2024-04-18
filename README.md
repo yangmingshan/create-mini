@@ -10,7 +10,7 @@ pnpm create mini@latest
 
 ## 说明
 
-这是一个自以为是的 Vue Mini 脚手架，不提供自定义项，主要供我自己使用，如果恰巧也符合你的品味当然也欢迎使用。此脚手架指定 [PNPM](https://pnpm.io) 作为包管理器，使用 TS + Less + WXML 技术栈，并提供了从开发到测试直至生产构建的一整套方案。以下为此脚手架所包含的功能：
+这是一个自以为是的 Vue Mini 脚手架，不提供自定义项，主要供我自己使用，如果恰巧也符合你的品味当然也欢迎使用。此脚手架指定 [PNPM](https://pnpm.io) 作为包管理器，使用 TS + Less + HTML 技术栈，并提供了从开发到测试直至生产构建的一整套方案。以下为此脚手架所包含的功能：
 
 - NPM 包构建提取（目前仅支持包含 ESM Build 的包）：Rollup
 - 代码检查及格式化：ESLint, StyleLint, Prettier
@@ -22,7 +22,7 @@ pnpm create mini@latest
 - 单元测试：Vitest
 - Git hooks：husky
 - 开发时图片静态服务：serve
-- WXML 图片路径替换（生产构建带 Hash）：PostHTML
+- HTML 图片路径替换（生产构建带 Hash）：PostHTML
 - Less 背景图片路径替换（生产构建带 Hash）：PostCSS
 - 开发时监听文件修改并实时构建：chokidar
 
