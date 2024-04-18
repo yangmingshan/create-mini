@@ -23,7 +23,12 @@ const NODE_ENV = process.env.NODE_ENV || 'production';
 const __PROD__ = NODE_ENV === 'production';
 const localPath = `http://${getLocalIP()}:3000/`;
 const publicPath = 'https://your.static.server/';
-const terserOptions = { ecma: 2015, toplevel: true, safari10: true };
+const terserOptions = {
+  ecma: 2016,
+  toplevel: true,
+  safari10: true,
+  format: { comments: false },
+};
 
 process.on('unhandledRejection', (error) => {
   throw error;
