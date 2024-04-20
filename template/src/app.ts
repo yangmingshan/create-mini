@@ -8,7 +8,7 @@ Promise = PromisePolyfill;
 // eslint-disable-next-line import/first, import/no-unassigned-import
 import 'regenerator-runtime';
 // eslint-disable-next-line import/first
-import { createApp } from '@vue-mini/wechat';
+import { createApp } from '@vue-mini/core';
 
 createApp(() => {
   // eslint-disable-next-line no-console

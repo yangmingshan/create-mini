@@ -1,4 +1,4 @@
-import { defineComponent, ref } from '@vue-mini/wechat';
+import { defineComponent, ref } from '@vue-mini/core';
 
 defineComponent(() => {
   const greeting = ref('Welcome to Vue Mini');
