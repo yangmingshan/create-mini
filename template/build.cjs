@@ -81,14 +81,14 @@ async function bundleModule(module) {
     pkg = require(`${module}/package.json`);
   } catch {}
 
-  if (pkg && !pkg.module) {
+  if (pkg && !pkg.module && pkg.type !== 'module') {
     throw new Error(`Can't found esm bundle of ${module}`);
   }
 
   let entry = pkg
     ? path.join(
         path.dirname(require.resolve(`${module}/package.json`)),
-        pkg.module,
+        pkg.type === 'module' ? pkg.main : pkg.module,
       )
     : require.resolve(module);
 
