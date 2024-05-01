@@ -10,8 +10,8 @@
     "lint:style": "stylelint \"src/**/*.less\"",
     "type": "tsc",
     "test": "vitest",
-    "dev": "cross-env NODE_ENV=development node build.cjs",
-    "build": "cross-env NODE_ENV=production node build.cjs",
+    "dev": "cross-env NODE_ENV=development node build.js",
+    "build": "cross-env NODE_ENV=production node build.js",
     "prepare": "husky"
   },
   "dependencies": {

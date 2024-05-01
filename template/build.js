@@ -1,23 +1,21 @@
-'use strict';
-
-const os = require('node:os');
-const path = require('node:path');
-const crypto = require('node:crypto');
-const process = require('node:process');
-const { spawn } = require('node:child_process');
-const fs = require('fs-extra');
-const chokidar = require('chokidar');
-const babel = require('@babel/core');
-const { minify } = require('terser');
-const posthtml = require('posthtml');
-const less = require('less');
-const postcss = require('postcss');
-const pxtorpx = require('postcss-pxtorpx-pro');
-const url = require('postcss-url');
-const rollup = require('rollup');
-const { default: replace } = require('@rollup/plugin-replace');
-const { default: terser } = require('@rollup/plugin-terser');
-const { default: resolve } = require('@rollup/plugin-node-resolve');
+import os from 'node:os';
+import path from 'node:path';
+import crypto from 'node:crypto';
+import process from 'node:process';
+import { spawn } from 'node:child_process';
+import fs from 'fs-extra';
+import chokidar from 'chokidar';
+import babel from '@babel/core';
+import { minify } from 'terser';
+import posthtml from 'posthtml';
+import less from 'less';
+import postcss from 'postcss';
+import pxtorpx from 'postcss-pxtorpx-pro';
+import url from 'postcss-url';
+import { rollup } from 'rollup';
+import replace from '@rollup/plugin-replace';
+import terser from '@rollup/plugin-terser';
+import resolve from '@rollup/plugin-node-resolve';
 
 const NODE_ENV = process.env.NODE_ENV || 'production';
 const __PROD__ = NODE_ENV === 'production';
@@ -29,10 +27,6 @@ const terserOptions = {
   safari10: true,
   format: { comments: false },
 };
-
-process.on('unhandledRejection', (error) => {
-  throw error;
-});
 
 function getLocalIP() {
   const ifaces = Object.values(os.networkInterfaces());
@@ -60,7 +54,7 @@ async function bundleModule(module) {
   bundledModules.add(module);
 
   if (module === 'regenerator-runtime') {
-    const filePath = require.resolve(module);
+    const filePath = new URL(import.meta.resolve(module)).pathname;
     const destination = `dist/miniprogram_npm/${module}/index.js`;
     // Make sure the directory already exists when write file in production build
     await fs.copy(filePath, destination);
@@ -78,7 +72,12 @@ async function bundleModule(module) {
 
   let pkg;
   try {
-    pkg = require(`${module}/package.json`);
+    pkg = JSON.parse(
+      await fs.readFile(
+        new URL(import.meta.resolve(`${module}/package.json`)),
+        'utf8',
+      ),
+    );
   } catch {}
 
   if (pkg && !pkg.module && pkg.type !== 'module') {
@@ -87,10 +86,12 @@ async function bundleModule(module) {
 
   let entry = pkg
     ? path.join(
-        path.dirname(require.resolve(`${module}/package.json`)),
+        path.dirname(
+          new URL(import.meta.resolve(`${module}/package.json`)).pathname,
+        ),
         pkg.type === 'module' ? pkg.main : pkg.module,
       )
-    : require.resolve(module);
+    : new URL(import.meta.resolve(module)).pathname;
 
   if (module.startsWith('@babel/runtime/')) {
     const paths = entry.split(path.sep);
@@ -99,7 +100,7 @@ async function bundleModule(module) {
     entry = paths.join(path.sep);
   }
 
-  const bundle = await rollup.rollup({
+  const bundle = await rollup({
     input: entry,
     plugins: [
       replace({
@@ -291,8 +292,8 @@ async function prod() {
 }
 
 if (__PROD__) {
-  prod();
+  await prod();
 } else {
   spawn('serve', ['src'], { stdio: 'inherit', shell: true });
-  dev();
+  await dev();
 }
