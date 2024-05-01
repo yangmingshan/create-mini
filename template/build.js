@@ -16,6 +16,7 @@ import { rollup } from 'rollup';
 import replace from '@rollup/plugin-replace';
 import terser from '@rollup/plugin-terser';
 import resolve from '@rollup/plugin-node-resolve';
+import commonjs from '@rollup/plugin-commonjs';
 
 const NODE_ENV = process.env.NODE_ENV || 'production';
 const __PROD__ = NODE_ENV === 'production';
@@ -63,16 +64,12 @@ async function bundleModule(module) {
     );
   } catch {}
 
-  if (pkg && !pkg.module && pkg.type !== 'module') {
-    throw new Error(`Can't found esm bundle of ${module}`);
-  }
-
   let entry = pkg
     ? path.join(
         path.dirname(
           new URL(import.meta.resolve(`${module}/package.json`)).pathname,
         ),
-        pkg.type === 'module' ? pkg.main : pkg.module,
+        pkg.module || pkg.main,
       )
     : new URL(import.meta.resolve(module)).pathname;
 
@@ -86,6 +83,7 @@ async function bundleModule(module) {
   const bundle = await rollup({
     input: entry,
     plugins: [
+      commonjs(),
       replace({
         preventAssignment: true,
         values: {
