@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.24.4",
-    "@vue-mini/core": "1.0.0-rc.8",
+    "@vue-mini/core": "1.0.0-rc.9",
     "promise-polyfill": "^8.3.0"
   },
   "devDependencies": {
