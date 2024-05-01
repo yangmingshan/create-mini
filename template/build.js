@@ -54,34 +54,8 @@ async function bundleModule(module) {
   if (bundledModules.has(module)) return;
   bundledModules.add(module);
 
-  let pkg;
-  try {
-    pkg = JSON.parse(
-      await fs.readFile(
-        new URL(import.meta.resolve(`${module}/package.json`)),
-        'utf8',
-      ),
-    );
-  } catch {}
-
-  let entry = pkg
-    ? path.join(
-        path.dirname(
-          new URL(import.meta.resolve(`${module}/package.json`)).pathname,
-        ),
-        pkg.module || pkg.main,
-      )
-    : new URL(import.meta.resolve(module)).pathname;
-
-  if (module.startsWith('@babel/runtime/')) {
-    const paths = entry.split(path.sep);
-    paths.splice(-1, 0, 'esm');
-    // Path.join 在 POSIX OS 上会返回 'root/**' 而非正确的 '/root/**'，所以不能使用。
-    entry = paths.join(path.sep);
-  }
-
   const bundle = await rollup({
-    input: entry,
+    input: module,
     plugins: [
       commonjs(),
       replace({
