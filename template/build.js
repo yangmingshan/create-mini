@@ -6,6 +6,8 @@ import { spawn } from 'node:child_process';
 import fs from 'fs-extra';
 import chokidar from 'chokidar';
 import babel from '@babel/core';
+import traverse from '@babel/traverse';
+import t from '@babel/types';
 import { minify } from 'terser';
 import posthtml from 'posthtml';
 import less from 'less';
@@ -76,11 +78,23 @@ async function bundleModule(module) {
 }
 
 async function processScript(filePath) {
-  let { code } = await babel.transformFileAsync(path.resolve(filePath));
-  for (const [, module] of code.matchAll(/require\("(.+?)"\)/g)) {
-    if (module.startsWith('.')) continue;
-    bundleModule(module);
-  }
+  let { ast, code } = await babel.transformFileAsync(path.resolve(filePath), {
+    ast: true,
+  });
+
+  traverse.default(ast, {
+    CallExpression({ node }) {
+      if (
+        node.callee.name !== 'require' ||
+        !t.isStringLiteral(node.arguments[0]) ||
+        node.arguments[0].value.startsWith('.')
+      ) {
+        return;
+      }
+
+      bundleModule(node.arguments[0].value);
+    },
+  });
 
   if (__PROD__) {
     // eslint-disable-next-line unicorn/no-await-expression-member
