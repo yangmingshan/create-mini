@@ -9,7 +9,7 @@
     "lint:script": "eslint --ext .js,.cjs,.ts .",
     "lint:style": "stylelint \"src/**/*.less\"",
     "type": "tsc",
-    "test": "vitest",
+    "test": "cross-env NODE_ENV=test vitest",
     "dev": "cross-env NODE_ENV=development node build.js",
     "build": "cross-env NODE_ENV=production node build.js",
     "prepare": "husky"
