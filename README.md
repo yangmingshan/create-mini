@@ -1,4 +1,8 @@
-# create-mini
+# create-mini <a href="https://nodejs.org/en/about/previous-releases"><img src="https://img.shields.io/node/v/create-mini" alt="node compatibility"></a>
+
+<!-- prettier-ignore -->
+> [!NOTE]
+> 对于绝大多数用户来说推荐使用 [create-vue-mini](https://github.com/vue-mini/create-vue-mini) 而非本项目。
 
 自以为是的 Vue Mini 脚手架。
 
