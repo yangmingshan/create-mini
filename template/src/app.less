@@ -1,6 +1,18 @@
 page {
-  color: @font-color;
+  color: @black;
   font-size: @font-size;
-  font-family: sans-serif;
+  font-family:
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
   .lightBackground();
+}
+
+@media (prefers-color-scheme: dark) {
+  page {
+    color: @white;
+    .darkBackground();
+  }
 }
