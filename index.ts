@@ -3,6 +3,7 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import process from 'node:process'
+import { fileURLToPath } from 'node:url'
 import prompts from 'prompts'
 import { red, green, bold } from 'kolorist'
 
@@ -241,7 +242,7 @@ async function init() {
   console.log(`\n正在初始化项目 ${root}...`)
 
   renderTemplate(
-    new URL('template', import.meta.url).pathname,
+    fileURLToPath(new URL('template', import.meta.url)),
     root,
     packageName,
   )

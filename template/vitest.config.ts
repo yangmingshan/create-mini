@@ -1,10 +1,11 @@
+import { fileURLToPath } from 'node:url';
 import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
   resolve: {
     alias: {
       // eslint-disable-next-line @typescript-eslint/naming-convention
-      '@': new URL('src', import.meta.url).pathname,
+      '@': fileURLToPath(new URL('src', import.meta.url)),
     },
   },
   test: {
