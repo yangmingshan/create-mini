@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.24.7",
-    "@vue-mini/core": "1.0.0-rc.14",
+    "@vue-mini/core": "1.0.0-rc.15",
     "promise-polyfill": "^8.3.0"
   },
   "devDependencies": {
@@ -42,7 +42,7 @@
     "husky": "^9.0.11",
     "less": "^4.2.0",
     "lint-staged": "^15.2.7",
-    "postcss": "^8.4.38",
+    "postcss": "^8.4.39",
     "postcss-less": "^6.0.0",
     "postcss-pxtorpx-pro": "^2.0.0",
     "postcss-url": "^10.1.3",
