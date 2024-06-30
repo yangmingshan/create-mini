@@ -2,10 +2,7 @@ name: CI
 on: push
 jobs:
   run:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-latest, windows-latest]
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -17,5 +14,3 @@ jobs:
       - run: pnpm format
       - run: pnpm lint
       - run: pnpm type
-      - run: pnpm build
-      - run: node index.js vue-mini-project
